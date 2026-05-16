@@ -45,7 +45,7 @@ function AuthMonitoring() {
     try {
 
       const response = await fetch(
-        "http://localhost:5001/metrics"
+        "https://auth-service-4ji5.onrender.com/metrics"
       );
 
       const text = await response.text();

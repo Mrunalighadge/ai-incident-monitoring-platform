@@ -45,7 +45,7 @@ function DatabaseMonitoring() {
     try {
 
       const response = await fetch(
-        "http://localhost:5004/metrics"
+        "https://database-service-1ys1.onrender.com/"
       );
 
       const text = await response.text();

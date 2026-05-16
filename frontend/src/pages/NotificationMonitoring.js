@@ -45,7 +45,7 @@ function NotificationMonitoring() {
     try {
 
       const response = await fetch(
-        "http://localhost:5003/metrics"
+        "https://notification-service-c1gx.onrender.com"
       );
 
       const text = await response.text();

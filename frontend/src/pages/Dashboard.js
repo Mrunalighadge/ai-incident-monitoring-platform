@@ -28,10 +28,10 @@ function Dashboard() {
 
     try {
 
-      const auth = await fetch("http://localhost:5001/metrics");
-      const payment = await fetch("http://localhost:5002/metrics");
-      const notification = await fetch("http://localhost:5003/metrics");
-      const database = await fetch("http://localhost:5004/metrics");
+      const auth = await fetch("https://auth-service-4ji5.onrender.com/metrics");
+      const payment = await fetch("https://payment-service-cqbe.onrender.com");
+      const notification = await fetch("https://notification-service-c1gx.onrender.com");
+      const database = await fetch("https://database-service-1ys1.onrender.com/");
 
       const authText = await auth.text();
       const paymentText = await payment.text();
@@ -105,7 +105,7 @@ function Dashboard() {
 
     try {
 
-      const response = await fetch("http://localhost:5005/analysis");
+      const response = await fetch("https://ai-engine-hrd0.onrender.com");
 
       const data = await response.json();
 
