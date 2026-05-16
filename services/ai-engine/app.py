@@ -1,107 +1,190 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
-import random
+import requests
+import re
 
 app = Flask(__name__)
 CORS(app)
+
 
 @app.route('/')
 def home():
     return "AI Engine Running"
 
+
 @app.route('/analysis')
 def analysis():
 
-    cpu = random.randint(1, 100)
-    memory = random.randint(1, 100)
-    queue = random.randint(1, 100)
+    try:
 
-    severity = "LOW"
-    confidence = random.randint(80, 99)
+        auth_metrics = requests.get(
+            "https://auth-service-4ji5.onrender.com/metrics"
+        ).text
 
-    root_cause = "Infrastructure operating normally."
-    recommendation = "No remediation required."
+        payment_metrics = requests.get(
+            "https://payment-service-cqbe.onrender.com/metrics"
+        ).text
 
-    resolution_steps = [
-        "Continue monitoring system health."
-    ]
+        notification_metrics = requests.get(
+            "https://notification-service-c1gx.onrender.com/metrics"
+        ).text
 
-    # PAYMENT CPU ISSUE
-    if cpu > 85:
+        database_metrics = requests.get(
+            "https://database-service-1ys1.onrender.com/metrics"
+        ).text
 
-        severity = "CRITICAL"
+        def extract_metric(text, metric):
+
+            match = re.search(
+                rf"{metric}\s+(\d+\.?\d*)",
+                text
+            )
+
+            if match:
+                return float(match.group(1))
+
+            return 0
+
+        auth_cpu = extract_metric(
+            auth_metrics,
+            "auth_cpu_usage"
+        )
+
+        payment_cpu = extract_metric(
+            payment_metrics,
+            "payment_cpu_usage"
+        )
+
+        notification_cpu = extract_metric(
+            notification_metrics,
+            "notification_cpu_usage"
+        )
+
+        db_cpu = extract_metric(
+            database_metrics,
+            "db_cpu_usage"
+        )
+
+        severity = "LOW"
+        confidence = 88
 
         root_cause = (
-            "Payment service overload caused by excessive CPU "
-            "utilization and request saturation."
+            "Infrastructure operating normally."
         )
 
         recommendation = (
-            "Restart payment-service and scale replicas."
+            "No remediation required."
         )
 
         resolution_steps = [
-            "Restart payment-service container",
-            "Scale service replicas horizontally",
-            "Investigate retry storm in API gateway",
-            "Monitor queue latency and payment retries"
+            "Continue monitoring system health."
         ]
 
-    # NOTIFICATION QUEUE ISSUE
-    elif queue > 70:
+        # PAYMENT INCIDENT
 
-        severity = "WARNING"
+        if payment_cpu > 85:
 
-        root_cause = (
-            "Notification queue buildup detected due to delayed "
-            "message processing."
-        )
+            severity = "CRITICAL"
+            confidence = 97
 
-        recommendation = (
-            "Increase notification worker throughput."
-        )
+            root_cause = (
+                "Payment service overload detected due to "
+                "extreme CPU utilization."
+            )
 
-        resolution_steps = [
-            "Restart notification-service",
-            "Increase worker thread count",
-            "Clear stuck notification jobs",
-            "Verify SMTP provider health"
-        ]
+            recommendation = (
+                "Scale payment replicas and investigate "
+                "transaction spikes."
+            )
 
-    # MEMORY ISSUE
-    elif memory > 80:
+            resolution_steps = [
+                "Restart payment-service",
+                "Scale replicas horizontally",
+                "Check API retry storms",
+                "Investigate transaction queue latency"
+            ]
 
-        severity = "WARNING"
+        # AUTH INCIDENT
 
-        root_cause = (
-            "High memory consumption detected in infrastructure services."
-        )
+        elif auth_cpu > 80:
 
-        recommendation = (
-            "Investigate memory leaks and optimize workloads."
-        )
+            severity = "WARNING"
+            confidence = 92
 
-        resolution_steps = [
-            "Check container memory usage",
-            "Investigate memory leaks",
-            "Restart overloaded containers",
-            "Optimize background processes"
-        ]
+            root_cause = (
+                "Authentication service experiencing "
+                "high CPU pressure."
+            )
 
-    return jsonify({
+            recommendation = (
+                "Optimize authentication workload."
+            )
 
-        "severity": severity,
-        "confidence": confidence,
-        "root_cause": root_cause,
-        "recommendation": recommendation,
-        "resolution_steps": resolution_steps,
+            resolution_steps = [
+                "Inspect failed login bursts",
+                "Restart auth-service",
+                "Investigate token validation load"
+            ]
 
-        "cpu": cpu,
-        "memory": memory,
-        "queue": queue
-    })
-import os
+        # NOTIFICATION INCIDENT
+
+        elif notification_cpu > 70:
+
+            severity = "WARNING"
+            confidence = 90
+
+            root_cause = (
+                "Notification processing backlog detected."
+            )
+
+            recommendation = (
+                "Increase notification worker throughput."
+            )
+
+            resolution_steps = [
+                "Restart notification-service",
+                "Scale worker threads",
+                "Check SMTP provider health"
+            ]
+
+        # DATABASE INCIDENT
+
+        elif db_cpu > 75:
+
+            severity = "CRITICAL"
+            confidence = 95
+
+            root_cause = (
+                "Database resource saturation detected."
+            )
+
+            recommendation = (
+                "Optimize queries and scale database resources."
+            )
+
+            resolution_steps = [
+                "Check slow queries",
+                "Inspect DB locks",
+                "Scale DB resources",
+                "Restart database-service"
+            ]
+
+        return jsonify({
+
+            "severity": severity,
+            "confidence": confidence,
+            "root_cause": root_cause,
+            "recommendation": recommendation,
+            "resolution_steps": resolution_steps
+
+        })
+
+    except Exception as e:
+
+        return jsonify({
+            "error": str(e)
+        })
+
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5005))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=5005)
