@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   LineChart,
@@ -11,6 +12,8 @@ import {
 } from "recharts";
 
 const Dashboard = () => {
+
+  const navigate = useNavigate();
 
   const [services, setServices] = useState([]);
 
@@ -135,8 +138,8 @@ const Dashboard = () => {
 
         {
           name: "Database Service",
-          cpu: parseMetric(databaseText, "database_cpu_usage"),
-          memory: parseMetric(databaseText, "database_memory_usage"),
+          cpu: parseMetric(databaseText, "db_cpu_usage"),
+          memory: parseMetric(databaseText, "db_memory_usage"),
         },
 
       ].map((service) => ({
@@ -175,23 +178,23 @@ const Dashboard = () => {
     }
 
   };
-  
+
   useEffect(() => {
-
-  fetchMetrics();
-  fetchAIAnalysis();
-
-  const interval = setInterval(() => {
 
     fetchMetrics();
     fetchAIAnalysis();
 
-  }, 5000);
+    const interval = setInterval(() => {
 
-  return () => clearInterval(interval);
+      fetchMetrics();
+      fetchAIAnalysis();
 
-// eslint-disable-next-line
-}, []);
+    }, 5000);
+
+    return () => clearInterval(interval);
+
+  // eslint-disable-next-line
+  }, []);
 
   const activeIncidents =
     services.filter((s) => s.status !== "HEALTHY");
@@ -226,7 +229,24 @@ const Dashboard = () => {
 
           <div
             key={index}
-            className={`rounded-3xl border p-6 shadow-xl transition-all duration-300
+
+            onClick={() => {
+
+              if (service.name === "Payment Service")
+                navigate("/payment-monitoring");
+
+              if (service.name === "Database Service")
+                navigate("/database-monitoring");
+
+              if (service.name === "Notification Service")
+                navigate("/notification-monitoring");
+
+              if (service.name === "Auth Service")
+                navigate("/auth-monitoring");
+
+            }}
+
+            className={`cursor-pointer rounded-3xl border p-6 shadow-xl transition-all duration-300 hover:scale-105
             ${
               service.status === "CRITICAL"
                 ? "border-red-500 shadow-red-500/20"
@@ -370,7 +390,7 @@ const Dashboard = () => {
 
             </h2>
 
-            <span className="text-red-400">
+            <span className="text-red-400 animate-pulse">
 
               LIVE
 
