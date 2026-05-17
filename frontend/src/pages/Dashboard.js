@@ -175,22 +175,23 @@ const Dashboard = () => {
     }
 
   };
-
+  
   useEffect(() => {
+
+  fetchMetrics();
+  fetchAIAnalysis();
+
+  const interval = setInterval(() => {
 
     fetchMetrics();
     fetchAIAnalysis();
 
-    const interval = setInterval(() => {
+  }, 5000);
 
-      fetchMetrics();
-      fetchAIAnalysis();
+  return () => clearInterval(interval);
 
-    }, 5000);
-
-    return () => clearInterval(interval);
-
-  }, []);
+// eslint-disable-next-line
+}, []);
 
   const activeIncidents =
     services.filter((s) => s.status !== "HEALTHY");
