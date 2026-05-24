@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: auth-service
+    env: docker
+    rootDir: services/auth-service
+
+  - type: web
+    name: payment-service
+    env: docker
+    rootDir: services/payment-service
+
+  - type: web
+    name: notification-service
+    env: docker
+    rootDir: services/notification-service
+
+  - type: web
+    name: ai-engine
+    env: docker
+    rootDir: services/ai-engine
