@@ -1,0 +1,33 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+
+  - job_name: 'prometheus'
+    static_configs:
+    - targets: ['host.docker.internal:9090']
+
+  - job_name: 'auth-service'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['host.docker.internal:5001']
+
+  - job_name: 'payment-service'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['host.docker.internal:5002']
+
+  - job_name: 'notification-service'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['host.docker.internal:5003']
+
+  - job_name: 'database-service'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['host.docker.internal:5004']
+
+  - job_name: 'trivy-security'
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['172.17.0.1:8000']

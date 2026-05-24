@@ -1,21 +1,66 @@
-version: "3"
-
 services:
-  app:
-    build: ./app
+
+  auth-service:
+    build: ./services/auth-service
+    container_name: auth-service
     ports:
-      - "8000:8000"
-    volumes:
-      - ./app/data:/app/data
+      - "5001:5001"
+
+  payment-service:
+    build: ./services/payment-service
+    container_name: payment-service
+    ports:
+      - "5002:5002"
+
+  notification-service:
+    build: ./services/notification-service
+    container_name: notification-service
+    ports:
+      - "5003:5003"
+
+  database-service:
+    build: ./services/database-service
+    container_name: database-service
+    ports:
+      - "5004:5004"
+
+  ai-engine:
+    build: ./services/ai-engine
+    container_name: ai-engine
+    ports:
+      - "5005:5005"
 
   prometheus:
     image: prom/prometheus
+    container_name: prometheus
     ports:
       - "9090:9090"
     volumes:
-      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
 
   grafana:
     image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3001:3000"
+    volumes:
+      - grafana-storage:/var/lib/grafana
+
+  security-exporter:
+    build:
+      context: .
+      dockerfile: Dockerfile.security
+    container_name: security-exporter
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
     ports:
       - "3000:3000"
+
+volumes:
+  grafana-storage:

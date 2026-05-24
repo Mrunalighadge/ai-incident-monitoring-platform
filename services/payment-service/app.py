@@ -25,6 +25,11 @@ def metrics():
 payment_cpu_usage {cpu}
 payment_memory_usage {memory}
 payment_failures {payment_failures}
+
+payment_critical_vulns 1
+payment_high_vulns 3
+payment_medium_vulns 8
+payment_risk_score 78
 """
 
     return Response(data, mimetype="text/plain")
