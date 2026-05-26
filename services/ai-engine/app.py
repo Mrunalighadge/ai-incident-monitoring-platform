@@ -184,13 +184,15 @@ def analysis():
         return jsonify({
             "error": str(e)
         })
+    
     @app.route("/")
     def home():
-     return {
-        "status": "healthy",
-        "prediction": "Infrastructure operating normally.",
-        "confidence": "94%"
-    }
+      return jsonify({
+        "root_cause": "Infrastructure operating normally",
+        "confidence_score": 94,
+        "recommendation": "No action required",
+        "resolution_steps": "Continue monitoring services"
+    })
 
 
 import os
