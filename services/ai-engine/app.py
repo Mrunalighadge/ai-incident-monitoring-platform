@@ -3,13 +3,19 @@ from flask_cors import CORS
 import requests
 import re
 
+
 app = Flask(__name__)
 CORS(app)
 
 
-@app.route('/')
+@app.route("/")
 def home():
-    return "AI Engine Running"
+    return jsonify({
+        "root_cause": "Infrastructure operating normally",
+        "confidence_score": 94,
+        "recommendation": "No action required",
+        "resolution_steps": "Continue monitoring services"
+    })
 
 
 @app.route('/analysis')
