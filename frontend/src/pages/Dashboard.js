@@ -169,9 +169,17 @@ const Dashboard = () => {
 
       const data = await response.json();
 
-      setAiData(data);
+      setAiData({
 
-    } catch (error) {
+        severity: data.severity || "LOW",
+        confidence: data.confidence || 0,
+        root_cause: data.root_cause || "No issue detected",
+        recommendation: data.recommendation || "System operating normally",
+        resolution_steps: data.resolution_steps || []
+      });
+
+       } 
+    catch (error) {
 
       console.error("AI Engine Error:", error);
 
