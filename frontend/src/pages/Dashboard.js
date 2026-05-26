@@ -613,18 +613,30 @@ const Dashboard = () => {
 
               <div className="space-y-3">
 
-                {aiData.resolution_steps?.map((step, index) => (
+                {Array.isArray(aiData?.resolution_steps) ? (
 
-                  <div
-                    key={index}
-                    className="bg-slate-800 rounded-xl p-3"
-                  >
+  aiData.resolution_steps.map((step, index) => (
 
-                    {index + 1}. {step}
+    <div
+      key={index}
+      className="bg-slate-800 rounded-xl p-3"
+    >
 
-                  </div>
+      {index + 1}. {step}
 
-                ))}
+    </div>
+
+  ))
+
+) : (
+
+  <div className="bg-slate-800 rounded-xl p-3">
+
+    {aiData?.resolution_steps || "No resolution steps available"}
+
+  </div>
+
+)}
 
               </div>
 
