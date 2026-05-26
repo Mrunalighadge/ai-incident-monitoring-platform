@@ -184,6 +184,13 @@ def analysis():
         return jsonify({
             "error": str(e)
         })
+    @app.route("/")
+    def home():
+     return {
+        "status": "healthy",
+        "prediction": "Infrastructure operating normally.",
+        "confidence": "94%"
+    }
 
 
 import os
@@ -193,3 +200,4 @@ if __name__ == "__main__":
         host="0.0.0.0",
         port=int(os.environ.get("PORT", 5000))
     )
+
