@@ -43,7 +43,7 @@ function PaymentMonitoring() {
     try {
 
       const response = await fetch(
-        "https://payment-service-cqbe.onrender.com"
+        "https://payment-service-cqbe.onrender.com/metrics"
       );
 
       const text = await response.text();
