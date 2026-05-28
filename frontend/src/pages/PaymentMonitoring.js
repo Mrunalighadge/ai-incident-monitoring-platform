@@ -1,22 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  CartesianGrid,
-  ResponsiveContainer
-} from "recharts";
-
 import { useNavigate } from "react-router-dom";
 
 function PaymentMonitoring() {
 
   const navigate = useNavigate();
-
-  const [chartData, setChartData] = useState([]);
 
   const [stats, setStats] = useState({
     cpu: 0,
@@ -78,21 +66,6 @@ function PaymentMonitoring() {
         memory,
         status
       });
-
-      const timestamp =
-        new Date().toLocaleTimeString();
-
-      setChartData((prev) => [
-
-        ...prev.slice(-14),
-
-        {
-          time: timestamp,
-          cpu,
-          memory
-        }
-
-      ]);
 
     } catch (error) {
 
@@ -234,11 +207,11 @@ function PaymentMonitoring() {
 
         </div>
 
-        {/* REAL-TIME CHARTS */}
+        {/* GRAFANA CHARTS */}
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
 
-          {/* CPU CHART */}
+          {/* CPU GRAFANA PANEL */}
 
           <div className="bg-slate-900 rounded-3xl p-6">
 
@@ -254,45 +227,28 @@ function PaymentMonitoring() {
 
             </div>
 
-            <div className="h-80">
-
-              <ResponsiveContainer
-                width="100%"
-                height="100%"
+            <div
+            style={{
+              width: "100%",
+              height: "320px",
+              borderRadius: "16px",
+              overflow: "hidden",
+              }}
               >
+                <iframe
+                title="CPU Trend"
+                src="http://localhost:3001/d-solo/adj6m9v/new-dashboard?orgId=1&from=1779861524163&to=1779883124163&timezone=browser&panelId=2&theme=dark"
+                width="100%"
+                height="320"
+                frameBorder="0"
+                style={{
+                  border: "none",
+                }}
+                />
+                </div>
+                </div>
 
-                <LineChart data={chartData}>
-
-                  <CartesianGrid
-                    strokeDasharray="3 3"
-                    stroke="#334155"
-                  />
-
-                  <XAxis
-                    dataKey="time"
-                    stroke="#94a3b8"
-                  />
-
-                  <YAxis stroke="#94a3b8" />
-
-                  <Tooltip />
-
-                  <Line
-                    type="monotone"
-                    dataKey="cpu"
-                    stroke="#ef4444"
-                    strokeWidth={3}
-                  />
-
-                </LineChart>
-
-              </ResponsiveContainer>
-
-            </div>
-
-          </div>
-
-          {/* MEMORY CHART */}
+          {/* MEMORY GRAFANA PANEL */}
 
           <div className="bg-slate-900 rounded-3xl p-6">
 
@@ -308,39 +264,18 @@ function PaymentMonitoring() {
 
             </div>
 
-            <div className="h-80">
+            <div className="h-80 rounded-2xl overflow-hidden">
 
-              <ResponsiveContainer
+              <iframe
+                title="Memory Monitoring"
+
+                src="http://localhost:3001/d-solo/adj6m9v/new-dashboard?orgId=1&panelId=3&theme=dark"
+
                 width="100%"
                 height="100%"
-              >
 
-                <LineChart data={chartData}>
-
-                  <CartesianGrid
-                    strokeDasharray="3 3"
-                    stroke="#334155"
-                  />
-
-                  <XAxis
-                    dataKey="time"
-                    stroke="#94a3b8"
-                  />
-
-                  <YAxis stroke="#94a3b8" />
-
-                  <Tooltip />
-
-                  <Line
-                    type="monotone"
-                    dataKey="memory"
-                    stroke="#06b6d4"
-                    strokeWidth={3}
-                  />
-
-                </LineChart>
-
-              </ResponsiveContainer>
+                frameBorder="0"
+              />
 
             </div>
 
