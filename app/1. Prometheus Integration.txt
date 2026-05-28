@@ -1,0 +1,40 @@
+1. Prometheus Integration
+
+Create proper scrape configs.
+
+2. Grafana Dashboards
+
+Embed Grafana panels into your React UI.
+
+3. Alertmanager
+
+Real alerts to:
+
+email
+Slack
+Teams
+4. AI Correlation Engine
+
+Analyze:
+
+CPU spikes
+latency spikes
+auth failures
+DB bottlenecks
+
+and generate AI insights.
+
+5. Docker Compose / Kubernetes
+
+Run all services together.
+
+6. Incident Timeline
+
+Show:
+
+when issue started
+impact
+recovery
+MTTR
+
+Very industry-level feature.
