@@ -124,7 +124,7 @@ Suggested Resolution:
                 server = smtplib.SMTP("smtp.gmail.com", 587)
                 server.starttls()
 
-                server.login(sender_email, app_password)
+                server.login(mrunalighadge070@gmail.com, app_password)
 
                 server.sendmail(
                     sender_email,
