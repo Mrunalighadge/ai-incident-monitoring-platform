@@ -237,7 +237,7 @@ function PaymentMonitoring() {
               >
                 <iframe
                 title="CPU Trend"
-                src="http://localhost:3001/d-solo/adj6m9v/new-dashboard?orgId=1&from=1779861524163&to=1779883124163&timezone=browser&panelId=2&theme=dark"
+                src="https://grafana-monitoring-gl66.onrender.com/d-solo/adj6m9v/new-dashboard?orgId=1&from=1779861524163&to=1779883124163&theme=dark"
                 width="100%"
                 height="320"
                 frameBorder="0"
@@ -269,7 +269,7 @@ function PaymentMonitoring() {
               <iframe
                 title="Memory Monitoring"
 
-                src="http://localhost:3001/d-solo/adj6m9v/new-dashboard?orgId=1&panelId=3&theme=dark"
+                src="https://grafana-monitoring-gl66.onrender.com/d-solo/adj6m9v/new-dashboard?orgId=1&panelId=3&theme=dark"
 
                 width="100%"
                 height="100%"
