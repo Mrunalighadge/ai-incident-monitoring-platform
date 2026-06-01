@@ -1,11 +1,16 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, Response
 from flask_cors import CORS
+from prometheus_client import Gauge, generate_latest
 import requests
 import re
-
+import os
 
 app = Flask(__name__)
 CORS(app)
+
+# Prometheus Metrics
+cpu_usage = Gauge('ai_cpu_usage', 'AI Engine CPU Usage')
+memory_usage = Gauge('ai_memory_usage', 'AI Engine Memory Usage')
 
 
 @app.route("/")
@@ -18,7 +23,19 @@ def home():
     })
 
 
-@app.route('/analysis')
+@app.route("/metrics")
+def metrics():
+
+    cpu_usage.set(35)
+    memory_usage.set(60)
+
+    return Response(
+        generate_latest(),
+        mimetype="text/plain"
+    )
+
+
+@app.route("/analysis")
 def analysis():
 
     try:
@@ -87,7 +104,6 @@ def analysis():
         ]
 
         # PAYMENT INCIDENT
-
         if payment_cpu > 85:
 
             severity = "CRITICAL"
@@ -111,7 +127,6 @@ def analysis():
             ]
 
         # AUTH INCIDENT
-
         elif auth_cpu > 80:
 
             severity = "WARNING"
@@ -133,7 +148,6 @@ def analysis():
             ]
 
         # NOTIFICATION INCIDENT
-
         elif notification_cpu > 70:
 
             severity = "WARNING"
@@ -154,7 +168,6 @@ def analysis():
             ]
 
         # DATABASE INCIDENT
-
         elif db_cpu > 75:
 
             severity = "CRITICAL"
@@ -190,22 +203,10 @@ def analysis():
         return jsonify({
             "error": str(e)
         })
-    
-    @app.route("/")
-    def home():
-      return jsonify({
-        "root_cause": "Infrastructure operating normally",
-        "confidence_score": 94,
-        "recommendation": "No action required",
-        "resolution_steps": "Continue monitoring services"
-    })
 
-
-import os
 
 if __name__ == "__main__":
     app.run(
         host="0.0.0.0",
         port=int(os.environ.get("PORT", 5000))
     )
-
