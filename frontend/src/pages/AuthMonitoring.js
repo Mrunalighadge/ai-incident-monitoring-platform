@@ -45,7 +45,8 @@ function AuthMonitoring() {
     try {
 
       const response = await fetch(
-        "https://auth-service-4ji5.onrender.com/metrics"
+         "https://auth-service-opu2.onrender.com/metrics"
+
       );
 
       const text = await response.text();
@@ -75,7 +76,7 @@ function AuthMonitoring() {
       );
 
       const anomalies = parseMetric(
-        "auth_anomaly_score"
+        "anomaly"
       );
 
       const status =
