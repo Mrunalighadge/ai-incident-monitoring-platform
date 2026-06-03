@@ -181,6 +181,7 @@ setChartData((prev) => [
             </h2>
 
           </div>
+          </div>
 
         {/* METRIC CARDS */}
 
