@@ -254,57 +254,15 @@ function AuthMonitoring() {
 
           {/* AUTH FAILURES */}
 
-          <div className="bg-slate-900 rounded-3xl p-6">
-
-            <div className="flex justify-between items-center mb-6">
-
-              <h2 className="text-2xl font-bold">
-                Authentication Failure Trend
-              </h2>
-
-              <span className="text-red-400 animate-pulse">
-                LIVE
-              </span>
-
-            </div>
-
-            <div className="h-80">
-
-              <ResponsiveContainer
-                width="100%"
-                height="100%"
-              >
-
-                <LineChart data={chartData}>
-
-                  <CartesianGrid
-                    strokeDasharray="3 3"
-                    stroke="#334155"
-                  />
-
-                  <XAxis
-                    dataKey="time"
-                    stroke="#94a3b8"
-                  />
-
-                  <YAxis stroke="#94a3b8" />
-
-                  <Tooltip />
-
-                  <Line
-                    type="monotone"
-                    dataKey="authFailures"
-                    stroke="#ef4444"
-                    strokeWidth={3}
-                  />
-
-                </LineChart>
-
-              </ResponsiveContainer>
-
-            </div>
-
-          </div>
+          <div className="h-80">
+  <iframe
+    title="Authentication Failure Trend"
+    src="https://rubyplatypus1017.grafana.net/d-solo/mrs9w95/auth-dashboard?orgId=1&from=now-6h&to=now&theme=dark&panelId=1"
+    width="100%"
+    height="100%"
+    frameBorder="0"
+  />
+</div>
 
           {/* ANOMALIES */}
 
@@ -324,37 +282,15 @@ function AuthMonitoring() {
 
             <div className="h-80">
 
-              <ResponsiveContainer
-                width="100%"
-                height="100%"
-              >
-
-                <LineChart data={chartData}>
-
-                  <CartesianGrid
-                    strokeDasharray="3 3"
-                    stroke="#334155"
-                  />
-
-                  <XAxis
-                    dataKey="time"
-                    stroke="#94a3b8"
-                  />
-
-                  <YAxis stroke="#94a3b8" />
-
-                  <Tooltip />
-
-                  <Line
-                    type="monotone"
-                    dataKey="anomalies"
-                    stroke="#facc15"
-                    strokeWidth={3}
-                  />
-
-                </LineChart>
-
-              </ResponsiveContainer>
+              <div className="h-80">
+      <iframe
+    title="Security Anomaly Trend"
+    src="https://rubyplatypus1017.grafana.net/d-solo/mrs9w95/auth-dashboard?orgId=1&from=now-6h&to=now&theme=dark&panelId=2"
+    width="100%"
+    height="100%"
+    frameBorder="0"
+  />
+</div>
 
             </div>
 
