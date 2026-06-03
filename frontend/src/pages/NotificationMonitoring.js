@@ -1,4 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+  ResponsiveContainer,
+} from "recharts";
 
 
 import { useNavigate } from "react-router-dom";
@@ -6,6 +17,8 @@ import { useNavigate } from "react-router-dom";
 function NotificationMonitoring() {
 
   const navigate = useNavigate();
+  
+  const [chartData, setChartData] = useState([]);
 
   const [stats, setStats] = useState({
     cpu: 0,
