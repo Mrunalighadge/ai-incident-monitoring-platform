@@ -173,6 +173,7 @@ function NotificationMonitoring() {
           </div>
 
         </div>
+        </div>
 
         {/* METRIC CARDS */}
 
@@ -287,57 +288,37 @@ function NotificationMonitoring() {
 
   </div>
 
-  {/* NOTIFICATION AI ANALYSIS */}
+  <div className="h-[350px] bg-slate-800 rounded-2xl p-4">
 
-  <div className="bg-slate-900 rounded-3xl p-6">
+  <ResponsiveContainer width="100%" height="100%">
 
-    <div className="flex justify-between items-center mb-6">
+    <LineChart data={chartData}>
 
-      <h2 className="text-2xl font-bold">
-        Notification AI Analysis
-      </h2>
+      <CartesianGrid strokeDasharray="3 3" />
 
-      <span className="text-yellow-400">
-        LIVE
-      </span>
+      <XAxis dataKey="time" />
 
-    </div>
+      <YAxis />
 
-    <div className="h-[350px] bg-slate-800 rounded-2xl flex flex-col items-center justify-center">
+      <Tooltip />
 
-      <div className="text-6xl mb-4">📨</div>
+      <Line
+        type="monotone"
+        dataKey="queue"
+        stroke="#facc15"
+        strokeWidth={2}
+      />
 
-      <h3 className="text-xl font-semibold mb-3">
-        Notification Delivery Analysis
-      </h3>
+      <Line
+        type="monotone"
+        dataKey="failures"
+        stroke="#ef4444"
+        strokeWidth={2}
+      />
 
-      <p className="text-gray-400 text-center px-6 mb-4">
-        Current notification anomaly score:
-      </p>
+    </LineChart>
 
-      <div className="text-5xl font-bold text-yellow-400 mb-4">
-        {stats.anomalies}%
-      </div>
-
-      <p
-        className={
-          stats.status === "HEALTHY"
-            ? "text-green-400"
-            : stats.status === "WARNING"
-            ? "text-yellow-400"
-            : "text-red-400"
-        }
-      >
-        {stats.status === "HEALTHY"
-          ? "Notification service healthy"
-          : stats.status === "WARNING"
-          ? "Potential delivery delays detected"
-          : "Critical notification failures detected"}
-      </p>
-
-    </div>
-
-  </div>
+  </ResponsiveContainer>
 
 </div>
         {/* INSIGHTS */}
@@ -402,8 +383,4 @@ function NotificationMonitoring() {
 
     </div>
 
-  );
-
-}
-
-export default NotificationMonitoring;
+  export default NotificationMonitoring;
