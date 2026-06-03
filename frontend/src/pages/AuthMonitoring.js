@@ -222,53 +222,66 @@ function AuthMonitoring() {
 
         {/* CHARTS */}
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
 
-          {/* AUTH FAILURES */}
+  {/* AUTH FAILURE TREND */}
 
-          <div className="h-80">
-  <iframe
-    title="Authentication Failure Trend"
-    src="https://rubyplatypus1017.grafana.net/d-solo/mrs9w95/auth-dashboard?orgId=1&from=now-6h&to=now&theme=dark&panelId=1"
-    width="100%"
-    height="100%"
-    frameBorder="0"
-  />
+  <div className="bg-slate-900 rounded-3xl p-6">
+
+    <div className="flex justify-between items-center mb-4">
+
+      <h2 className="text-2xl font-bold">
+        Authentication Failure Trend
+      </h2>
+
+      <a
+        href="https://rubyplatypus1017.grafana.net/d/mrs9w95/auth-dashboard"
+        target="_blank"
+        rel="noreferrer"
+        className="text-cyan-400"
+      >
+        Open Grafana →
+      </a>
+
+    </div>
+
+    <iframe
+      title="Authentication Failure Trend"
+      src="https://rubyplatypus1017.grafana.net/d-solo/mrs9w95/auth-dashboard?orgId=1&theme=dark&panelId=1"
+      width="100%"
+      height="350"
+      frameBorder="0"
+    />
+
+  </div>
+
+  {/* SECURITY ANOMALY TREND */}
+
+  <div className="bg-slate-900 rounded-3xl p-6">
+
+    <div className="flex justify-between items-center mb-4">
+
+      <h2 className="text-2xl font-bold">
+        Security Anomaly Trend
+      </h2>
+
+      <span className="text-yellow-400 animate-pulse">
+        LIVE
+      </span>
+
+    </div>
+
+    <iframe
+      title="Security Anomaly Trend"
+      src="https://rubyplatypus1017.grafana.net/d-solo/mrs9w95/auth-dashboard?orgId=1&theme=dark&panelId=2"
+      width="100%"
+      height="350"
+      frameBorder="0"
+    />
+
+  </div>
+
 </div>
-
-          {/* ANOMALIES */}
-
-          <div className="bg-slate-900 rounded-3xl p-6">
-
-            <div className="flex justify-between items-center mb-6">
-
-              <h2 className="text-2xl font-bold">
-                Security Anomaly Trend
-              </h2>
-
-              <span className="text-yellow-400 animate-pulse">
-                LIVE
-              </span>
-
-            </div>
-
-            <div className="h-80">
-
-              <div className="h-80">
-      <iframe
-    title="Security Anomaly Trend"
-    src="https://rubyplatypus1017.grafana.net/d-solo/mrs9w95/auth-dashboard?orgId=1&from=now-6h&to=now&theme=dark&panelId=2"
-    width="100%"
-    height="100%"
-    frameBorder="0"
-  />
-</div>
-
-            </div>
-
-          </div>
-
-        </div>
 
         {/* SECURITY INSIGHTS */}
 
