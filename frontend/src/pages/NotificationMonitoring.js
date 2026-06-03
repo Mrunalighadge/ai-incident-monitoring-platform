@@ -26,17 +26,6 @@ function NotificationMonitoring() {
     status: "HEALTHY"
   });
 
-  const timestamp = new Date().toLocaleTimeString();
-
-setChartData((prev) => [
-  ...prev.slice(-14),
-  {
-    time: timestamp,
-    queue,
-    failures,
-  },
-]);
-
   useEffect(() => {
 
     fetchMetrics();
@@ -104,10 +93,17 @@ setChartData((prev) => [
         status
       });
 
-      const timestamp =
-        new Date().toLocaleTimeString();
+      const timestamp = new Date().toLocaleTimeString();
 
-    } catch (error) {
+setChartData((prev) => [
+  ...prev.slice(-14),
+  {
+    time: timestamp,
+    queue,
+    failures,
+  },
+]);
+} catch (error) {
 
       console.error(
         "Notification metrics failed:",
@@ -260,7 +256,7 @@ setChartData((prev) => [
       </h2>
 
       <a
-        href="https://rubyplatypus1017.grafana.net/d-solo/mrmcbfb/notification-dashboard"
+        href="https://rubyplatypus1017.grafana.net/d/mrmcbfb/notification-dashboard"
         target="_blank"
         rel="noreferrer"
         className="text-cyan-400 hover:text-cyan-300"
@@ -284,7 +280,7 @@ setChartData((prev) => [
       </p>
 
       <a
-        href="https://rubyplatypus1017.grafana.net/d-solo/mrmcbfb/notification-dashboard"
+        href="https://rubyplatypus1017.grafana.net/d/mrmcbfb/notification-dashboard"
         target="_blank"
         rel="noreferrer"
         className="bg-cyan-600 hover:bg-cyan-700 px-5 py-3 rounded-xl"
@@ -391,7 +387,6 @@ setChartData((prev) => [
       </div>
 
     </div>
-  </div>
      );
 }
 export default NotificationMonitoring;

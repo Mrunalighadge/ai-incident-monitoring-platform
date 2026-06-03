@@ -260,7 +260,7 @@ function DatabaseMonitoring() {
       </h2>
 
       <a
-        href="https://rubyplatypus1017.grafana.net/d-solo/mrr9bq8/database-dashboard"
+        href="https://rubyplatypus1017.grafana.net/d/mrr9bq8/database-dashboard"
         target="_blank"
         rel="noreferrer"
         className="text-cyan-400 hover:text-cyan-300"
@@ -285,7 +285,7 @@ function DatabaseMonitoring() {
       </p>
 
       <a
-        href="https://rubyplatypus1017.grafana.net/d-solo/mrr9bq8/database-dashboard"
+        href="https://rubyplatypus1017.grafana.net/d/mrr9bq8/database-dashboard"
         target="_blank"
         rel="noreferrer"
         className="bg-cyan-600 hover:bg-cyan-700 px-5 py-3 rounded-xl"
