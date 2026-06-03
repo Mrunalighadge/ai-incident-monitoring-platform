@@ -207,81 +207,99 @@ function PaymentMonitoring() {
 
         </div>
 
-        {/* GRAFANA CHARTS */}
+        {/* PAYMENT CHARTS */}
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
 
-          {/* CPU GRAFANA PANEL */}
+  {/* PAYMENT DASHBOARD */}
 
-          <div className="bg-slate-900 rounded-3xl p-6">
+  <div className="bg-slate-900 rounded-3xl p-6">
 
-            <div className="flex justify-between items-center mb-6">
+    <div className="flex justify-between items-center mb-6">
 
-              <h2 className="text-2xl font-bold">
-                CPU Trend
-              </h2>
+      <h2 className="text-2xl font-bold">
+        Payment Analytics Dashboard
+      </h2>
 
-              <span className="text-red-400 animate-pulse">
-                LIVE
-              </span>
+      <a
+        href="https://rubyplatypus1017.grafana.net/d/mrn9gpw/payment-dashboard"
+        target="_blank"
+        rel="noreferrer"
+        className="text-cyan-400 hover:text-cyan-300"
+      >
+        Open Grafana →
+      </a>
 
-            </div>
+    </div>
 
-            <div
-            style={{
-              width: "100%",
-              height: "320px",
-              borderRadius: "16px",
-              overflow: "hidden",
-              }}
-              >
-                <iframe
-                title="CPU Trend"
-                src="https://grafana-monitoring-gl66.onrender.com/d-solo/adj6m9v/new-dashboard?orgId=1&from=1779861524163&to=1779883124163&theme=dark"
-                width="100%"
-                height="320"
-                frameBorder="0"
-                style={{
-                  border: "none",
-                }}
-                />
-                </div>
-                </div>
+    <div className="h-[350px] bg-slate-800 rounded-2xl flex flex-col items-center justify-center">
 
-          {/* MEMORY GRAFANA PANEL */}
+      <div className="text-6xl mb-4">💳</div>
 
-          <div className="bg-slate-900 rounded-3xl p-6">
+      <h3 className="text-xl font-semibold mb-3">
+        Payment Monitoring Dashboard
+      </h3>
 
-            <div className="flex justify-between items-center mb-6">
+      <p className="text-gray-400 text-center px-6 mb-6">
+        View payment CPU usage, memory usage,
+        transaction monitoring and service analytics
+        in Grafana.
+      </p>
 
-              <h2 className="text-2xl font-bold">
-                Memory Trend
-              </h2>
+      <a
+        href="https://rubyplatypus1017.grafana.net/d/mrn9gpw/payment-dashboard"
+        target="_blank"
+        rel="noreferrer"
+        className="bg-cyan-600 hover:bg-cyan-700 px-5 py-3 rounded-xl"
+      >
+        View Dashboard
+      </a>
 
-              <span className="text-cyan-400 animate-pulse">
-                LIVE
-              </span>
+    </div>
 
-            </div>
+  </div>
 
-            <div className="h-80 rounded-2xl overflow-hidden">
+  {/* PAYMENT AI ANALYSIS */}
 
-              <iframe
-                title="Memory Monitoring"
+  <div className="bg-slate-900 rounded-3xl p-6">
 
-                src="https://grafana-monitoring-gl66.onrender.com/d-solo/adj6m9v/new-dashboard?orgId=1&panelId=3&theme=dark"
+    <div className="flex justify-between items-center mb-6">
 
-                width="100%"
-                height="100%"
+      <h2 className="text-2xl font-bold">
+        Payment AI Analysis
+      </h2>
 
-                frameBorder="0"
-              />
+      <span className="text-red-400 animate-pulse">
+        LIVE
+      </span>
 
-            </div>
+    </div>
 
-          </div>
+    <div className="h-[350px] bg-slate-800 rounded-2xl flex flex-col items-center justify-center">
 
-        </div>
+      <div className="text-6xl mb-4">📈</div>
+
+      <h3 className="text-xl font-semibold mb-3">
+        Transaction Risk Analysis
+      </h3>
+
+      <p className="text-gray-400 text-center px-6 mb-4">
+        Current payment anomaly score:
+      </p>
+
+      <div className="text-5xl font-bold text-red-400 mb-4">
+        {stats.anomalies}
+      </div>
+
+      <p className="text-green-400">
+        Payment system operating normally
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
 
         {/* INCIDENT ANALYSIS */}
 
