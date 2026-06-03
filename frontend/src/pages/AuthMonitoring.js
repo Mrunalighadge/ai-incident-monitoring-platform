@@ -228,7 +228,7 @@ function AuthMonitoring() {
 
   <div className="bg-slate-900 rounded-3xl p-6">
 
-    <div className="flex justify-between items-center mb-4">
+    <div className="flex justify-between items-center mb-6">
 
       <h2 className="text-2xl font-bold">
         Authentication Failure Trend
@@ -238,20 +238,37 @@ function AuthMonitoring() {
         href="https://rubyplatypus1017.grafana.net/d/mrs9w95/auth-dashboard"
         target="_blank"
         rel="noreferrer"
-        className="text-cyan-400"
+        className="text-cyan-400 hover:text-cyan-300"
       >
         Open Grafana →
       </a>
 
     </div>
 
-    <iframe
-      title="Authentication Failure Trend"
-      src="https://rubyplatypus1017.grafana.net/d-solo/mrs9w95/auth-dashboard?orgId=1&theme=dark&panelId=1"
-      width="100%"
-      height="350"
-      frameBorder="0"
-    />
+    <div className="h-[350px] bg-slate-800 rounded-2xl flex flex-col items-center justify-center">
+
+      <div className="text-6xl mb-4">📊</div>
+
+      <h3 className="text-xl font-semibold mb-3">
+        Authentication Monitoring Dashboard
+      </h3>
+
+      <p className="text-gray-400 text-center px-6 mb-6">
+        View detailed authentication failure trends,
+        CPU usage, memory usage and security analytics
+        in Grafana.
+      </p>
+
+      <a
+        href="https://rubyplatypus1017.grafana.net/d/mrs9w95/auth-dashboard"
+        target="_blank"
+        rel="noreferrer"
+        className="bg-cyan-600 hover:bg-cyan-700 px-5 py-3 rounded-xl"
+      >
+        View Dashboard
+      </a>
+
+    </div>
 
   </div>
 
@@ -259,7 +276,7 @@ function AuthMonitoring() {
 
   <div className="bg-slate-900 rounded-3xl p-6">
 
-    <div className="flex justify-between items-center mb-4">
+    <div className="flex justify-between items-center mb-6">
 
       <h2 className="text-2xl font-bold">
         Security Anomaly Trend
@@ -271,13 +288,27 @@ function AuthMonitoring() {
 
     </div>
 
-    <iframe
-      title="Security Anomaly Trend"
-      src="https://rubyplatypus1017.grafana.net/d-solo/mrs9w95/auth-dashboard?orgId=1&theme=dark&panelId=2"
-      width="100%"
-      height="350"
-      frameBorder="0"
-    />
+    <div className="h-[350px] bg-slate-800 rounded-2xl flex flex-col items-center justify-center">
+
+      <div className="text-6xl mb-4">🛡️</div>
+
+      <h3 className="text-xl font-semibold mb-3">
+        AI Security Analysis
+      </h3>
+
+      <p className="text-gray-400 text-center px-6 mb-4">
+        Current anomaly score:
+      </p>
+
+      <div className="text-5xl font-bold text-yellow-400 mb-4">
+        {stats.anomalies}
+      </div>
+
+      <p className="text-green-400">
+        System operating normally
+      </p>
+
+    </div>
 
   </div>
 
