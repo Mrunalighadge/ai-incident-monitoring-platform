@@ -1,22 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  CartesianGrid,
-  ResponsiveContainer
-} from "recharts";
-
 import { useNavigate } from "react-router-dom";
 
 function AuthMonitoring() {
 
   const navigate = useNavigate();
-
-  const [chartData, setChartData] = useState([]);
 
   const [stats, setStats] = useState({
     cpu: 0,
@@ -93,22 +81,6 @@ function AuthMonitoring() {
         anomalies,
         status
       });
-
-      const timestamp =
-        new Date().toLocaleTimeString();
-
-      setChartData((prev) => [
-
-        ...prev.slice(-14),
-
-        {
-          time: timestamp,
-          authFailures,
-          anomalies
-        }
-
-      ]);
-
     } catch (error) {
 
       console.error(
