@@ -172,9 +172,6 @@ function NotificationMonitoring() {
 
           </div>
 
-        </div>
-        </div>
-
         {/* METRIC CARDS */}
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
@@ -321,6 +318,7 @@ function NotificationMonitoring() {
   </ResponsiveContainer>
 
 </div>
+</div>
         {/* INSIGHTS */}
 
         <div className="bg-slate-900 rounded-3xl p-6">
@@ -382,5 +380,7 @@ function NotificationMonitoring() {
       </div>
 
     </div>
-
-  export default NotificationMonitoring;
+  </div>
+     );
+}
+export default NotificationMonitoring;
