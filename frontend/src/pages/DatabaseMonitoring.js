@@ -245,119 +245,99 @@ function DatabaseMonitoring() {
 
         </div>
 
-        {/* CHARTS */}
+        {/* DATABASE CHARTS */}
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
 
-          {/* LATENCY */}
+  {/* DATABASE DASHBOARD */}
 
-          <div className="bg-slate-900 rounded-3xl p-6">
+  <div className="bg-slate-900 rounded-3xl p-6">
 
-            <div className="flex justify-between items-center mb-6">
+    <div className="flex justify-between items-center mb-6">
 
-              <h2 className="text-2xl font-bold">
-                Query Latency Trend
-              </h2>
+      <h2 className="text-2xl font-bold">
+        Database Analytics Dashboard
+      </h2>
 
-              <span className="text-yellow-400 animate-pulse">
-                LIVE
-              </span>
+      <a
+        href="https://rubyplatypus1017.grafana.net/d-solo/mrr9bq8/database-dashboard"
+        target="_blank"
+        rel="noreferrer"
+        className="text-cyan-400 hover:text-cyan-300"
+      >
+        Open Grafana →
+      </a>
 
-            </div>
+    </div>
 
-            <div className="h-80">
+    <div className="h-[350px] bg-slate-800 rounded-2xl flex flex-col items-center justify-center">
 
-              <ResponsiveContainer
-                width="100%"
-                height="100%"
-              >
+      <div className="text-6xl mb-4">🗄️</div>
 
-                <LineChart data={chartData}>
+      <h3 className="text-xl font-semibold mb-3">
+        Database Monitoring Dashboard
+      </h3>
 
-                  <CartesianGrid
-                    strokeDasharray="3 3"
-                    stroke="#334155"
-                  />
+      <p className="text-gray-400 text-center px-6 mb-6">
+        View database CPU usage, memory usage,
+        storage monitoring and performance analytics
+        in Grafana.
+      </p>
 
-                  <XAxis
-                    dataKey="time"
-                    stroke="#94a3b8"
-                  />
+      <a
+        href="https://rubyplatypus1017.grafana.net/d-solo/mrr9bq8/database-dashboard"
+        target="_blank"
+        rel="noreferrer"
+        className="bg-cyan-600 hover:bg-cyan-700 px-5 py-3 rounded-xl"
+      >
+        View Dashboard
+      </a>
 
-                  <YAxis stroke="#94a3b8" />
+    </div>
 
-                  <Tooltip />
+  </div>
 
-                  <Line
-                    type="monotone"
-                    dataKey="latency"
-                    stroke="#facc15"
-                    strokeWidth={3}
-                  />
+  {/* DATABASE AI ANALYSIS */}
 
-                </LineChart>
+  <div className="bg-slate-900 rounded-3xl p-6">
 
-              </ResponsiveContainer>
+    <div className="flex justify-between items-center mb-6">
 
-            </div>
+      <h2 className="text-2xl font-bold">
+        Database AI Analysis
+      </h2>
 
-          </div>
+      <span className="text-green-400">
+        LIVE
+      </span>
 
-          {/* CONNECTIONS */}
+    </div>
 
-          <div className="bg-slate-900 rounded-3xl p-6">
+    <div className="h-[350px] bg-slate-800 rounded-2xl flex flex-col items-center justify-center">
 
-            <div className="flex justify-between items-center mb-6">
+      <div className="text-6xl mb-4">📊</div>
 
-              <h2 className="text-2xl font-bold">
-                DB Connections Trend
-              </h2>
+      <h3 className="text-xl font-semibold mb-3">
+        Database Performance Analysis
+      </h3>
 
-              <span className="text-cyan-400 animate-pulse">
-                LIVE
-              </span>
+      <p className="text-gray-400 text-center px-6 mb-4">
+        Current database anomaly score:
+      </p>
 
-            </div>
+      <div className="text-5xl font-bold text-yellow-400 mb-4">
+        {stats.anomalies}
+      </div>
 
-            <div className="h-80">
+      <p className="text-green-400">
+        Database operating normally
+      </p>
 
-              <ResponsiveContainer
-                width="100%"
-                height="100%"
-              >
+    </div>
 
-                <LineChart data={chartData}>
+  </div>
 
-                  <CartesianGrid
-                    strokeDasharray="3 3"
-                    stroke="#334155"
-                  />
-
-                  <XAxis
-                    dataKey="time"
-                    stroke="#94a3b8"
-                  />
-
-                  <YAxis stroke="#94a3b8" />
-
-                  <Tooltip />
-
-                  <Line
-                    type="monotone"
-                    dataKey="connections"
-                    stroke="#06b6d4"
-                    strokeWidth={3}
-                  />
-
-                </LineChart>
-
-              </ResponsiveContainer>
-
-            </div>
-
-          </div>
-
-        </div>
+</div>
 
         {/* AI INSIGHTS */}
 

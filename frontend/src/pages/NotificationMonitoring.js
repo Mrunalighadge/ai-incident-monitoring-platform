@@ -247,119 +247,99 @@ function NotificationMonitoring() {
 
         </div>
 
-        {/* CHARTS */}
+        {/* NOTIFICATION CHARTS */}
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
 
-          {/* QUEUE */}
+  {/* NOTIFICATION DASHBOARD */}
 
-          <div className="bg-slate-900 rounded-3xl p-6">
+  <div className="bg-slate-900 rounded-3xl p-6">
 
-            <div className="flex justify-between items-center mb-6">
+    <div className="flex justify-between items-center mb-6">
 
-              <h2 className="text-2xl font-bold">
-                Queue Trend
-              </h2>
+      <h2 className="text-2xl font-bold">
+        Notification Analytics Dashboard
+      </h2>
 
-              <span className="text-yellow-400 animate-pulse">
-                LIVE
-              </span>
+      <a
+        href="https://rubyplatypus1017.grafana.net/d-solo/mrmcbfb/notification-dashboard"
+        target="_blank"
+        rel="noreferrer"
+        className="text-cyan-400 hover:text-cyan-300"
+      >
+        Open Grafana →
+      </a>
 
-            </div>
+    </div>
 
-            <div className="h-80">
+    <div className="h-[350px] bg-slate-800 rounded-2xl flex flex-col items-center justify-center">
 
-              <ResponsiveContainer
-                width="100%"
-                height="100%"
-              >
+      <div className="text-6xl mb-4">🔔</div>
 
-                <LineChart data={chartData}>
+      <h3 className="text-xl font-semibold mb-3">
+        Notification Monitoring Dashboard
+      </h3>
 
-                  <CartesianGrid
-                    strokeDasharray="3 3"
-                    stroke="#334155"
-                  />
+      <p className="text-gray-400 text-center px-6 mb-6">
+        View notification CPU usage, memory usage,
+        alert traffic and delivery analytics
+        in Grafana.
+      </p>
 
-                  <XAxis
-                    dataKey="time"
-                    stroke="#94a3b8"
-                  />
+      <a
+        href="https://rubyplatypus1017.grafana.net/d-solo/mrmcbfb/notification-dashboard"
+        target="_blank"
+        rel="noreferrer"
+        className="bg-cyan-600 hover:bg-cyan-700 px-5 py-3 rounded-xl"
+      >
+        View Dashboard
+      </a>
 
-                  <YAxis stroke="#94a3b8" />
+    </div>
 
-                  <Tooltip />
+  </div>
 
-                  <Line
-                    type="monotone"
-                    dataKey="queue"
-                    stroke="#facc15"
-                    strokeWidth={3}
-                  />
+  {/* NOTIFICATION AI ANALYSIS */}
 
-                </LineChart>
+  <div className="bg-slate-900 rounded-3xl p-6">
 
-              </ResponsiveContainer>
+    <div className="flex justify-between items-center mb-6">
 
-            </div>
+      <h2 className="text-2xl font-bold">
+        Notification AI Analysis
+      </h2>
 
-          </div>
+      <span className="text-yellow-400">
+        LIVE
+      </span>
 
-          {/* FAILURES */}
+    </div>
 
-          <div className="bg-slate-900 rounded-3xl p-6">
+    <div className="h-[350px] bg-slate-800 rounded-2xl flex flex-col items-center justify-center">
 
-            <div className="flex justify-between items-center mb-6">
+      <div className="text-6xl mb-4">📨</div>
 
-              <h2 className="text-2xl font-bold">
-                Failure Trend
-              </h2>
+      <h3 className="text-xl font-semibold mb-3">
+        Notification Delivery Analysis
+      </h3>
 
-              <span className="text-red-400 animate-pulse">
-                LIVE
-              </span>
+      <p className="text-gray-400 text-center px-6 mb-4">
+        Current notification anomaly score:
+      </p>
 
-            </div>
+      <div className="text-5xl font-bold text-yellow-400 mb-4">
+        {stats.anomalies}
+      </div>
 
-            <div className="h-80">
+      <p className="text-green-400">
+        Notification service healthy
+      </p>
 
-              <ResponsiveContainer
-                width="100%"
-                height="100%"
-              >
+    </div>
 
-                <LineChart data={chartData}>
+  </div>
 
-                  <CartesianGrid
-                    strokeDasharray="3 3"
-                    stroke="#334155"
-                  />
-
-                  <XAxis
-                    dataKey="time"
-                    stroke="#94a3b8"
-                  />
-
-                  <YAxis stroke="#94a3b8" />
-
-                  <Tooltip />
-
-                  <Line
-                    type="monotone"
-                    dataKey="failures"
-                    stroke="#ef4444"
-                    strokeWidth={3}
-                  />
-
-                </LineChart>
-
-              </ResponsiveContainer>
-
-            </div>
-
-          </div>
-
-        </div>
+</div>
 
         {/* INSIGHTS */}
 
