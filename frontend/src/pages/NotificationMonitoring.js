@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  ResponsiveContainer,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+} from "recharts";
 
 
 
 function NotificationMonitoring() {
 
   const navigate = useNavigate();
+  const [chartData, setChartData] = useState([]);
 
 
   const [stats, setStats] = useState({
@@ -15,6 +25,17 @@ function NotificationMonitoring() {
     failures: 0,
     status: "HEALTHY"
   });
+
+  const timestamp = new Date().toLocaleTimeString();
+
+setChartData((prev) => [
+  ...prev.slice(-14),
+  {
+    time: timestamp,
+    queue,
+    failures,
+  },
+]);
 
   useEffect(() => {
 
