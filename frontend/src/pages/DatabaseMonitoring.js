@@ -1,22 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  CartesianGrid,
-  ResponsiveContainer
-} from "recharts";
 
 import { useNavigate } from "react-router-dom";
 
 function DatabaseMonitoring() {
 
   const navigate = useNavigate();
-
-  const [chartData, setChartData] = useState([]);
 
   const [stats, setStats] = useState({
     cpu: 0,
