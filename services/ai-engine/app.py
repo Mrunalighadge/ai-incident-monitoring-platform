@@ -42,7 +42,7 @@ def analysis():
     try:
 
         auth_metrics = requests.get(
-            "https://auth-service-4ji5.onrender.com/metrics"
+            "https://auth-service-opu2.onrender.com/metrics"
         ).text
 
         payment_metrics = requests.get(
@@ -271,8 +271,8 @@ def chat():
         })
 
 
-    if __name__ == "__main__":
-        app.run(
+if __name__ == "__main__":
+    app.run(
         host="0.0.0.0",
         port=int(os.environ.get("PORT", 5000))
     )
