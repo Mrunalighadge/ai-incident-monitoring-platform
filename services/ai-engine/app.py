@@ -204,11 +204,10 @@ def analysis():
         return jsonify({
             "error": str(e)
         })
-    @app.route("/chat", methods=["POST"])
+    
+@app.route("/chat", methods=["POST"])
 def chat():
-
     try:
-
         data = request.get_json()
 
         question = data.get("question", "").lower()
@@ -266,16 +265,14 @@ def chat():
         return jsonify({
             "answer": response
         })
-
     except Exception as e:
-
-        return jsonify({
+       return jsonify({
             "answer": str(e)
         })
 
 
-if __name__ == "__main__":
-    app.run(
+    if __name__ == "__main__":
+        app.run(
         host="0.0.0.0",
         port=int(os.environ.get("PORT", 5000))
     )
