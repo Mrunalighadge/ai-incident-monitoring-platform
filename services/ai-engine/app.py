@@ -4,6 +4,7 @@ from prometheus_client import Gauge, generate_latest
 import requests
 import re
 import os
+from flask import request
 
 app = Flask(__name__)
 CORS(app)
@@ -202,6 +203,74 @@ def analysis():
 
         return jsonify({
             "error": str(e)
+        })
+    @app.route("/chat", methods=["POST"])
+def chat():
+
+    try:
+
+        data = request.get_json()
+
+        question = data.get("question", "").lower()
+
+        response = (
+            "I can help with Auth, Payment, Notification, "
+            "Database and Infrastructure incidents."
+        )
+
+        if "payment" in question:
+
+            response = (
+                "Payment service handles transactions. "
+                "Check CPU usage, memory consumption and "
+                "transaction processing spikes in Grafana."
+            )
+
+        elif "auth" in question:
+
+            response = (
+                "Authentication service validates users "
+                "and tokens. Investigate login failures "
+                "and CPU pressure if issues occur."
+            )
+
+        elif "database" in question:
+
+            response = (
+                "Database health depends on query latency, "
+                "connections and CPU utilization. "
+                "Investigate slow queries first."
+            )
+
+        elif "notification" in question:
+
+            response = (
+                "Notification service manages email delivery. "
+                "Monitor queue size and failed notifications."
+            )
+
+        elif "critical" in question:
+
+            response = (
+                "Critical incidents require immediate action. "
+                "Review Grafana dashboards and AI recommendations."
+            )
+
+        elif "healthy" in question:
+
+            response = (
+                "All monitored services appear healthy based "
+                "on current metrics."
+            )
+
+        return jsonify({
+            "answer": response
+        })
+
+    except Exception as e:
+
+        return jsonify({
+            "answer": str(e)
         })
 
 
