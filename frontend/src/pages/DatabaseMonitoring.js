@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 function DatabaseMonitoring() {
 
   const navigate = useNavigate();
-
   const [stats, setStats] = useState({
     cpu: 0,
     memory: 0,
@@ -79,21 +78,6 @@ function DatabaseMonitoring() {
         connections,
         status
       });
-
-      const timestamp =
-        new Date().toLocaleTimeString();
-
-      setChartData((prev) => [
-
-        ...prev.slice(-14),
-
-        {
-          time: timestamp,
-          latency,
-          connections
-        }
-
-      ]);
 
     } catch (error) {
 
@@ -311,16 +295,28 @@ function DatabaseMonitoring() {
       </h3>
 
       <p className="text-gray-400 text-center px-6 mb-4">
-        Current database anomaly score:
-      </p>
+  Current Query Latency
+</p>
 
-      <div className="text-5xl font-bold text-yellow-400 mb-4">
-        {stats.anomalies}
-      </div>
+<div className="text-5xl font-bold text-yellow-400 mb-4">
+  {stats.latency.toFixed(0)} ms
+</div>
 
-      <p className="text-green-400">
-        Database operating normally
-      </p>
+<p
+  className={
+    stats.status === "CRITICAL"
+      ? "text-red-400"
+      : stats.status === "WARNING"
+      ? "text-yellow-400"
+      : "text-green-400"
+  }
+>
+  {stats.status === "CRITICAL"
+    ? "Database performance degraded"
+    : stats.status === "WARNING"
+    ? "Latency increasing"
+    : "Database operating normally"}
+</p>
 
     </div>
 
