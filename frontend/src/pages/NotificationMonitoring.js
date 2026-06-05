@@ -5,8 +5,6 @@ import { useNavigate } from "react-router-dom";
 function NotificationMonitoring() {
 
   const navigate = useNavigate();
-  const [chartData, setChartData] = useState([]);
-
 
   const [stats, setStats] = useState({
     cpu: 0,
@@ -83,16 +81,7 @@ function NotificationMonitoring() {
         status
       });
 
-      const timestamp = new Date().toLocaleTimeString();
 
-setChartData((prev) => [
-  ...prev.slice(-14),
-  {
-    time: timestamp,
-    queue,
-    failures,
-  },
-]);
 } catch (error) {
 
       console.error(
@@ -282,37 +271,55 @@ setChartData((prev) => [
 
   </div>
 
-  <div className="h-[350px] bg-slate-800 rounded-2xl p-4">
+  {/* NOTIFICATION AI ANALYSIS */}
 
-  <ResponsiveContainer width="100%" height="100%">
+<div className="bg-slate-900 rounded-3xl p-6">
 
-    <LineChart data={chartData}>
+  <div className="flex justify-between items-center mb-6">
 
-      <CartesianGrid strokeDasharray="3 3" />
+    <h2 className="text-2xl font-bold">
+      Notification AI Analysis
+    </h2>
 
-      <XAxis dataKey="time" />
+    <span className="text-green-400">
+      LIVE
+    </span>
 
-      <YAxis />
+  </div>
 
-      <Tooltip />
+  <div className="h-[350px] bg-slate-800 rounded-2xl flex flex-col items-center justify-center">
 
-      <Line
-        type="monotone"
-        dataKey="queue"
-        stroke="#facc15"
-        strokeWidth={2}
-      />
+    <div className="text-6xl mb-4">🔔</div>
 
-      <Line
-        type="monotone"
-        dataKey="failures"
-        stroke="#ef4444"
-        strokeWidth={2}
-      />
+    <h3 className="text-xl font-semibold mb-3">
+      Notification Performance Analysis
+    </h3>
 
-    </LineChart>
+    <p className="text-gray-400 text-center px-6 mb-4">
+      Current Queue Size
+    </p>
 
-  </ResponsiveContainer>
+    <div className="text-5xl font-bold text-yellow-400 mb-4">
+      {stats.queue.toFixed(0)}
+    </div>
+
+    <p
+      className={
+        stats.status === "CRITICAL"
+          ? "text-red-400"
+          : stats.status === "WARNING"
+          ? "text-yellow-400"
+          : "text-green-400"
+      }
+    >
+      {stats.status === "CRITICAL"
+        ? "Notification delivery degraded"
+        : stats.status === "WARNING"
+        ? "Queue backlog increasing"
+        : "Notification service healthy"}
+    </p>
+
+  </div>
 
 </div>
 </div>
