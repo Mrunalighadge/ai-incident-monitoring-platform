@@ -211,6 +211,9 @@ def chat():
         data = request.get_json()
 
         question = data.get("question", "").lower()
+        analysis_data = requests.get(
+    "https://ai-engine-69a7.onrender.com"
+).json()
 
         response = (
             "I can help with Auth, Payment, Notification, "
