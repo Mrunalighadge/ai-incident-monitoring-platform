@@ -18,13 +18,12 @@ const Dashboard = () => {
   const [services, setServices] = useState([]);
 
   const [aiData, setAiData] = useState({
-
     severity: "LOW",
-    confidence: 0,
+    predicted_risk: 0,
+    estimated_failure_time: "Unknown",
     root_cause: "Waiting for AI response...",
     recommendation: "",
     resolution_steps: []
-
   });
 
   const [chartData, setChartData] = useState([]);
@@ -170,15 +169,16 @@ const Dashboard = () => {
       const data = await response.json();
 
       setAiData({
-
         severity: data.severity || "LOW",
-        confidence: data.confidence || 0,
+        predicted_risk: data.predicted_risk || 0,
+        estimated_failure_time:
+        data.estimated_failure_time || "Unknown",
         root_cause: data.root_cause || "No issue detected",
-        recommendation: data.recommendation || "System operating normally",
+        recommendation:data.recommendation || "System operating normally",
         resolution_steps: data.resolution_steps || []
       });
 
-       } 
+    } 
     catch (error) {
 
       console.error("AI Engine Error:", error);
@@ -573,35 +573,37 @@ const Dashboard = () => {
             </p>
 
             <div className="mb-6">
-
               <div className="flex justify-between mb-2">
-
                 <span className="text-gray-400">
+                  Prediction Risk
+                  </span>
+                  <span className="font-bold text-red-400">
+                    {aiData.predicted_risk}%
+                    </span>
+                    </div>
+                    <div className="w-full bg-slate-600 rounded-full h-4">
+                      <div
+                      className="bg-red-500 h-4 rounded-full"
+                      style={{
+                        width: `${aiData.predicted_risk}%`
+                      }}
+                      />
+                      </div>
+                      </div>
 
-                  Confidence
+<div className="mb-6">
 
-                </span>
+  <h4 className="text-gray-300 mb-2">
+    Estimated Failure Time
+  </h4>
 
-                <span className="font-bold">
+  <div className="bg-slate-800 rounded-xl p-3">
 
-                  {aiData.confidence}%
+    {aiData.estimated_failure_time}
 
-                </span>
+  </div>
 
-              </div>
-
-              <div className="w-full bg-slate-600 rounded-full h-4">
-
-                <div
-                  className="bg-red-400 h-4 rounded-full"
-                  style={{
-                    width: `${aiData.confidence}%`
-                  }}
-                />
-
-              </div>
-
-            </div>
+</div>
 
             <div>
 
@@ -732,13 +734,13 @@ const Dashboard = () => {
 
             <p className="text-gray-400 mb-3">
 
-              AI Confidence
+              AI Prediction Risk
 
             </p>
 
             <h3 className="text-5xl font-bold text-cyan-400">
 
-              {aiData.confidence}%
+              {aiData.predicted_risk}%
 
             </h3>
 
