@@ -90,15 +90,14 @@ def analysis():
         )
 
         severity = "LOW"
-        confidence = 88
-
+        predicted_risk = 10
+        estimated_failure_time = "No risk detected"
         root_cause = (
             "Infrastructure operating normally."
-        )
-
+            )
         recommendation = (
             "No remediation required."
-        )
+            )
 
         resolution_steps = [
             "Continue monitoring system health."
@@ -106,21 +105,18 @@ def analysis():
 
         # PAYMENT INCIDENT
         if payment_cpu > 85:
-
-            severity = "CRITICAL"
-            confidence = 97
-
-            root_cause = (
+             severity = "CRITICAL"
+             predicted_risk = 95
+             estimated_failure_time = "10-15 minutes"
+             root_cause = (
                 "Payment service overload detected due to "
                 "extreme CPU utilization."
             )
-
-            recommendation = (
+             recommendation = (
                 "Scale payment replicas and investigate "
                 "transaction spikes."
             )
-
-            resolution_steps = [
+             resolution_steps = [
                 "Restart payment-service",
                 "Scale replicas horizontally",
                 "Check API retry storms",
@@ -132,6 +128,8 @@ def analysis():
 
             severity = "WARNING"
             confidence = 92
+            predicted_risk = 80
+            estimated_failure_time = "20-30 minutes"
 
             root_cause = (
                 "Authentication service experiencing "
@@ -153,6 +151,8 @@ def analysis():
 
             severity = "WARNING"
             confidence = 90
+            predicted_risk = 75
+            estimated_failure_time = "30-45 minutes"
 
             root_cause = (
                 "Notification processing backlog detected."
@@ -173,6 +173,8 @@ def analysis():
 
             severity = "CRITICAL"
             confidence = 95
+            predicted_risk = 90
+            estimated_failure_time = "5-10 minutes"
 
             root_cause = (
                 "Database resource saturation detected."
@@ -190,14 +192,13 @@ def analysis():
             ]
 
         return jsonify({
-
             "severity": severity,
-            "confidence": confidence,
+            "predicted_risk": predicted_risk,
+            "estimated_failure_time": estimated_failure_time,
             "root_cause": root_cause,
             "recommendation": recommendation,
             "resolution_steps": resolution_steps
-
-        })
+            })
 
     except Exception as e:
 
