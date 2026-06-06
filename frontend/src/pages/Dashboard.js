@@ -41,7 +41,7 @@ const Dashboard = () => {
     "https://database-service-1ys1.onrender.com/metrics";
 
   const aiEngineUrl =
-    "https://ai-engine-69a7.onrender.com/";
+    "https://ai-engine-69a7.onrender.com/analysis";
 
   const parseMetric = (text, metricName) => {
 
