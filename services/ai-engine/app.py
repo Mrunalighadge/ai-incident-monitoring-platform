@@ -5,9 +5,18 @@ import requests
 import re
 import os
 from flask import request
+import joblib
+
+model = joblib.load(
+    "incident_model.pkl"
+)
 
 app = Flask(__name__)
 CORS(app)
+
+model = joblib.load(
+    "incident_model.pkl"
+)
 
 # Prometheus Metrics
 cpu_usage = Gauge('ai_cpu_usage', 'AI Engine CPU Usage')
@@ -78,9 +87,21 @@ def analysis():
             payment_metrics,
             "payment_cpu_usage"
         )
-
+        payment_memory = extract_metric(
+            payment_metrics,
+            "payment_memory_usage"
+            )
+        
+        prediction = model.predict([
+            [payment_cpu, payment_memory]
+            ])[0]
+        print( 
+            "ML Prediction:",
+            prediction
+            )
         notification_cpu = extract_metric(
-            notification_metrics,
+
+        notification_metrics,
             "notification_cpu_usage"
         )
 
