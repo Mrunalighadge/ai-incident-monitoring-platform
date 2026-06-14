@@ -33,7 +33,7 @@ function NotificationMonitoring() {
     try {
 
       const response = await fetch(
-        "https://notification-service-c1gx.onrender.com/metrics"
+        "https://notification-service-s13m.onrender.com/metrics"
       );
 
       const text = await response.text();

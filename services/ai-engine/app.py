@@ -44,19 +44,19 @@ def analysis():
     try:
 
         auth_metrics = requests.get(
-            "https://auth-service-opu2.onrender.com/metrics"
+            "https://auth-service-1zh0.onrender.com/metrics"
         ).text
 
         payment_metrics = requests.get(
-            "https://payment-service-cqbe.onrender.com/metrics"
+            "https://payment-service-n9ds.onrender.com/metrics"
         ).text
 
         notification_metrics = requests.get(
-            "https://notification-service-c1gx.onrender.com/metrics"
+            "https://notification-service-s13m.onrender.com/metrics"
         ).text
 
         database_metrics = requests.get(
-            "https://database-service-1ys1.onrender.com/metrics"
+            "https://database-service-m88z.onrender.com/metrics"
         ).text
 
         def extract_metric(text, metric):

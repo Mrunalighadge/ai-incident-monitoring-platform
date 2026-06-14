@@ -33,7 +33,7 @@ function DatabaseMonitoring() {
     try {
 
       const response = await fetch(
-        "https://database-service-1ys1.onrender.com/metrics"
+        "https://database-service-m88z.onrender.com/metrics"
       );
 
       const text = await response.text();

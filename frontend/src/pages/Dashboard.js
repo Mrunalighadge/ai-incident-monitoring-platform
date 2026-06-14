@@ -29,19 +29,19 @@ const Dashboard = () => {
   const [chartData, setChartData] = useState([]);
 
   const authMetricsUrl =
-    "https://auth-service-4ji5.onrender.com/metrics";
+    "https://auth-service-1zh0.onrender.com/metrics";
 
   const paymentMetricsUrl =
-    "https://payment-service-cqbe.onrender.com/metrics";
+    "https://payment-service-n9ds.onrender.com/metrics";
 
   const notificationMetricsUrl =
-    "https://notification-service-c1gx.onrender.com/metrics";
+    "https://notification-service-s13m.onrender.com/metrics";
 
   const databaseMetricsUrl =
-    "https://database-service-1ys1.onrender.com/metrics";
+    "https://database-service-m88z.onrender.com/metrics";
 
   const aiEngineUrl =
-    "https://ai-engine-69a7.onrender.com/analysis";
+    "https://ai-engine-46dm.onrender.com/analysis";
 
   const parseMetric = (text, metricName) => {
 

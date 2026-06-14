@@ -33,7 +33,7 @@ function AuthMonitoring() {
     try {
 
       const response = await fetch(
-         "https://auth-service-opu2.onrender.com/metrics"
+         "https://auth-service-1zh0.onrender.com/metrics"
 
       );
 
