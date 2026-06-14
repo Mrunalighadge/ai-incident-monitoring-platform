@@ -1,4 +1,6 @@
 shcnxrkviirknmgw
 
 
-inuc oubm tkyt htfu
+inucoubmtkythtfu
+
+docker run -d -p 3000:3000 --name=grafana -e GF_SMTP_ENABLED=true -e GF_SMTP_HOST=smtp.gmail.com:587 -e GF_SMTP_USER=mrunalighadge070@gmail.com -e GF_SMTP_PASSWORD=inucoubmtkythtfu -e GF_SMTP_FROM_ADDRESS=mrunalighadge070@gmail.com grafana/grafana
