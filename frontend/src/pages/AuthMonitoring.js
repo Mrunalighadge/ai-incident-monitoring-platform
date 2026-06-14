@@ -235,7 +235,7 @@ function AuthMonitoring() {
       </h2>
 
       <a
-        href="https://scarletchestnut2168.grafana.net/d/mrs9w95/auth-dashboard"
+        href="https://scarletchestnut2168.grafana.net/d/mrs9w95/auth-dashboard?orgId=1&from=now-24h&to=now"
         target="_blank"
         rel="noreferrer"
         className="text-cyan-400 hover:text-cyan-300"
@@ -260,7 +260,7 @@ function AuthMonitoring() {
       </p>
 
       <a
-        href="https://scarletchestnut2168.grafana.net/d/mrs9w95/auth-dashboard"
+        href="https://scarletchestnut2168.grafana.net/d/mrs9w95/auth-dashboard?orgId=1&from=now-24h&to=now"
         target="_blank"
         rel="noreferrer"
         className="bg-cyan-600 hover:bg-cyan-700 px-5 py-3 rounded-xl"
