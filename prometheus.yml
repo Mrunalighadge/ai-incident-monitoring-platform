@@ -8,27 +8,27 @@ scrape_configs:
     metrics_path: /metrics
     static_configs:
       - targets:
-          - ai-engine-69a7.onrender.com
+          - ai-engine-46dm.onrender.com
 
   - job_name: 'payment-service'
     metrics_path: /metrics
     static_configs:
       - targets:
-          - payment-service-cqbe.onrender.com
+          - payment-service-n9ds.onrender.com
 
   - job_name: 'notification-service'
     metrics_path: /metrics
     static_configs:
       - targets:
-          - notification-service-c1gx.onrender.com
+          - notification-service-s13m.onrender.com
 
   - job_name: 'database-service'
     metrics_path: /metrics
     static_configs:
       - targets:
-          - database-service-1ys1.onrender.com
+          - database-service-m88z.onrender.com
 
   - job_name: 'auth-service'
     metrics_path: /metrics
     static_configs:
-    - targets: ['auth-service-opu2.onrender.com']
+    - targets: ['auth-service-1zh0.onrender.com']
